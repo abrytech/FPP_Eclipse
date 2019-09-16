@@ -10,15 +10,11 @@ public class MyTable {
 
 	public String get(char c) {
 		Entry e = entries[computeIndex(c)];
-		return e.s;
+		return e.str;
 	}
 
 	private int computeIndex(char c) {
 		return (int) c - 97;
-	}
-
-	private char computeChar(int d) {
-		return (char) (d + 97);
 	}
 
 	public String toString() {
@@ -34,26 +30,26 @@ public class MyTable {
 
 	class Entry {
 		
-		char c;
-		String s;
+		char chars;
+		String str;
 
-		Entry(char c, String s){
-			this.c = c;
-			this.s = s;
+		Entry(char chars, String str){
+			this.chars = chars;
+			this.str = str;
 		}
 		public String toString(){
-			return(""+c+"->"+s);
+			return("" + chars + " -> " + str);
 		}	
 		
 	}
 	
 	public static void main(String[] args) {
-		MyTable t = new MyTable();
-		t.add('a', "Andrew");
-		t.add('b', "Billy");
-		t.add('w', "Willie");
-		System.out.println(t.get('w'));
-		System.out.println(t);
+		MyTable table = new MyTable();
+		table.add('a', "Andrew");
+		table.add('b', "Billy");
+		table.add('w', "Willie");
+		System.out.println(table.get('w'));
+		System.out.println(table);
 
 	}
 }
