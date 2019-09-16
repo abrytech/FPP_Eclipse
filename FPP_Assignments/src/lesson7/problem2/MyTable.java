@@ -25,8 +25,6 @@ public class MyTable {
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < 26; ++i) {
 			if (entries[i] != null) {
-				// sb.append(((entries[i]==null) ? computeChar(i)+"->null" :
-				// entries[i].toString()));
 				sb.append(entries[i].toString());
 				sb.append(System.getProperty("line.separator"));
 			}
@@ -54,7 +52,7 @@ public class MyTable {
 		t.add('a', "Andrew");
 		t.add('b', "Billy");
 		t.add('w', "Willie");
-		System.out.println(t.get('b'));
+		System.out.println(t.get('w'));
 		System.out.println(t);
 
 	}
