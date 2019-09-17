@@ -158,18 +158,20 @@ public class MyList {
 		return index;
 	}
 
-	public boolean search(Person word) {
-		boolean b = recurse(0, size - 1, word);
+	public boolean search(String word) {
+		MyList temp = this;
+		temp.sort();
+		boolean b = recurse(temp, 0, size - 1, word);
 		return b;
 	}
 
-	private boolean recurse(int a, int b, Person val) {
+	private boolean recurse(MyList temp, int a, int b, String val) {
 		int mid = (a + b) / 2;
 		if (a > b) return false;
-		if (typeArr[mid].getLast().equals(val.getLast())) return true;
-		else if (val.getLast().compareTo(typeArr[mid].getLast()) > 0)
-			return recurse(mid + 1, b, val);
-		return recurse(a, mid - 1, val);
+		if (typeArr[mid].getLast().equals(val)) return true;
+		else if (val.compareTo(typeArr[mid].getLast()) > 0)
+			return recurse(temp, mid + 1, b, val);
+		return recurse(temp, a, mid - 1, val);
 	}
 
 	public static void main(String[] args) {
@@ -186,7 +188,10 @@ public class MyList {
 		System.out.println("\n Size() : " + persons.size() + " is \n" + persons);
 		persons.insert(new Person("Yimer", "Betty", 32), 2);
 		System.out.println(persons.get(2));
-		System.out.println("\nSearching of Yitay: " + persons.find("Habte"));
+		System.out.println("\nSearching of Yitay: " + persons.search("Yitay"));
+		System.out.println("\nSearching of Habte: " + persons.search("Habte"));
+		System.out.println("\nSearching of Meron: " + persons.search("Meron"));
+		System.out.println("\nSearching of Endris: " + persons.search("Endris"));
 		persons.sort();
 		System.out.println("\nSorted: \n" + persons);		
 		}
