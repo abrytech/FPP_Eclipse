@@ -2,12 +2,12 @@ package lesson12.problem2;
 
 import java.util.Scanner;
 
-class UserException extends Exception {
-	UserException() {
+class AccountCheckingException extends Exception {
+	AccountCheckingException() {
 		super();
 	}
 
-	UserException(String msg) {
+	AccountCheckingException(String msg) {
 		super(msg);
 	}
 
@@ -37,8 +37,17 @@ class CustomerAccount {
 	}
 
 	public double getBalance() {
+		try
+		{
 		if (this.balance < 100.0)
-			new AccountCheckingException("Your balance is below 100, please maintain minimum balance");
+			throw new AccountCheckingException();
+		else
+			return balance;
+		}
+		catch(AccountCheckingException ex)
+		{
+			System.out.println(new AccountCheckingException("Your balance is below 100, please maintain minimum balance"));
+		}
 		return balance;
 	}
 
@@ -54,17 +63,25 @@ class CustomerAccount {
 
 	public void withdraw(double amount) throws AccountCheckingException {
 		double original = this.balance;
+		try {
 		if (this.balance < amount) {
-			AccountCheckingException ace = new AccountCheckingException("Sorry!, you dont have"
-					+ " sufficient deposit to withdrow: withdraw amount shoud be <= " + this.balance);
-			throw ace;
+			throw new AccountCheckingException();
+		}
+		else
+		{
+			System.out.println("Withdraw Successfull");
+			this.balance -= amount;
+		}
+		}
+		catch(AccountCheckingException ac)
+		{
+			System.out.println("Sorry!, you dont have sufficient deposit to withdrow: withdraw amount shoud be <= " + this.balance);
 		}
 
-		System.out.println("Withdraw Successfull");
-		this.balance -= amount;
+		
 	}
 	
-	public static void main(String[] args) throws AccountCheckingException{
+	public static void main(String[] args) throws AccountCheckingException {
 		   Scanner sc1=new Scanner(System.in);
 		   String n, a;
 		   double d;
@@ -116,13 +133,3 @@ class CustomerAccount {
 
 }
 
-class AccountCheckingException extends Exception {
-	AccountCheckingException() {
-		super();
-	}
-
-	AccountCheckingException(String msg) {
-		super(msg);
-	}
-
-}
