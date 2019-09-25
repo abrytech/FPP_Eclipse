@@ -76,7 +76,7 @@ public class MyStringLinkedList {
 			first.next.previous = header;
 			header.next = first.next;
 		}
-		else header = null;		
+		else header.next = null;		
 		first = null;
 	}
 
@@ -99,7 +99,6 @@ public class MyStringLinkedList {
 	// Write a recursive print method to display the elements in the list.
 	void print(Node n) {
 		if(n.next == null) return;
-		//System.out.println("pre = " + n.next.previous+ " value = "+ n.next + " next = " + n.next.next);
 		System.out.println(n.next);
 		print(n.next);
 	}
@@ -112,9 +111,9 @@ public class MyStringLinkedList {
 
 	public String toString() {
 		StringBuilder str = new StringBuilder();
-		Node temp = header.next;
-		while (temp != null) {
-			str.append("-->[" + temp.value.toString() + "]");
+		Node temp = header;
+		while (temp.next != null) {
+			str.append("-->[" + temp.next.value.toString() + "]");
 			temp = temp.next;
 		}
 		str.append("-->[" + "NULL" + "]");

@@ -58,11 +58,17 @@ public class ArrayStackDemo implements Stack1 {
 			System.out.println("Stack is Empty");
 			return null;
 		}
-		if (top != null) {
+		else if (top.next != null) {
 			temp = top.value;
 			top.next.previous = null;
 			top = top.next;
 			size--;
+		}
+		else
+		{
+			temp = top.value;
+			top = null;
+			size --;
 		}
 		return temp;
 	}
@@ -99,7 +105,7 @@ public class ArrayStackDemo implements Stack1 {
 		ArrayStackDemo stack = new ArrayStackDemo(); 
 		Object item;
 		stack.push('3'); 
-		stack.push('4');
+		/*stack.push('4');
 		stack.push('5');
 		stack.push('6');
 		System.out.println("Stack contents = " + stack);
@@ -116,6 +122,7 @@ public class ArrayStackDemo implements Stack1 {
 		System.out.println("Size of the Stack : " + stack.size());
 		ArrayStackDemo stack2 = new ArrayStackDemo();
 		stack2.push("Java");
-		stack2.push(20);
+		stack2.push(20);*/
+		System.out.println(stack.pop() + " is deleted");
 	}
 }

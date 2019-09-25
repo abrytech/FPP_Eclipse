@@ -64,9 +64,9 @@ public class MyList {
 
 		if (index > size || index < 0)
 			return;
-		if (index >= typeArr.length || size + 1 > typeArr.length) {
+		if (index >= typeArr.length || size + 1 > typeArr.length)
 			resize();
-		} else {
+		
 			int length = typeArr.length;
 			Person[] temp = new Person[length + 1];
 
@@ -82,14 +82,14 @@ public class MyList {
 
 			typeArr = temp;
 			size++;
-		}
+		
 	}
 
 	public boolean remove(String word) {
 		if (size == 0)
 			return false;
 		int length = typeArr.length;
-		Person[] temp = new Person[length + 1];
+		Person[] temp = new Person[length];
 		int index = -1;
 
 		for (int i = 0; i < size; i++) {

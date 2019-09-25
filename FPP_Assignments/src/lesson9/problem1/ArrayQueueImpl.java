@@ -14,21 +14,19 @@ public class ArrayQueueImpl {
 
 	public void enqueue(int obj) {
 		// implement
+		if(isFull()) resize();
 		if(isEmpty())
 		{ 
 			arr[++front] = obj;
 			rear++;
 		}
-		if(isFull()) resize();
-		arr[rear++] = obj;
-			
-		
+		else
+		arr[rear++] = obj;		
 	}
 
 	public int dequeue() throws Exception {
 		// implement
-		if (isEmpty())
-			throw new Exception();
+		if (isEmpty()) throw new Exception();
 		int first = arr[front];
 		front++;
 		return first;
@@ -47,7 +45,7 @@ public class ArrayQueueImpl {
 	public int size() {
 		// implement
 		if (isEmpty()) return 0;
-		return rear - 1;
+		return rear - front;
 	}
 
 	private void resize() {
@@ -62,9 +60,15 @@ public class ArrayQueueImpl {
 		ArrayQueueImpl queueA = new ArrayQueueImpl();
 		
 		for(int i = 0; i < 20; i++)
+		{
 			queueA.enqueue(i);
-		for(int i = 0; i < 20; i++)
+			System.out.println("rear = " + queueA.rear);
+		}
+		for(int i = 0; i < 17; i++)
+		{
 			queueA.dequeue();
+			System.out.println("top = " + queueA.front);
+		}
 		System.out.println("First element in queue " + queueA.peek());
 		System.out.println("Size of queue " + queueA.size());
 	}
